@@ -37,3 +37,16 @@ export default function MyApp({ Component, pageProps }) {
 ```
 
 https://nextjs.org/docs/basic-features/font-optimization
+
+## SSL Certificate
+
+```
+I made a file with the CA certificates that I get in my Plesk panel, then I added this line in Apache and now it's fixed.
+
+SSLCertificateChainFile C:/Users/Administrator/Desktop/cert/ca-cert.crt
+```
+
+https://www.ibm.com/docs/en/pac/9.1.5?topic=ipac-importing-cacertpem-certificate-into-browser-when-https-is-enabled
+
+https://www.digicert.com/kb/ssl-support/pem-ssl-creation.htm
+
