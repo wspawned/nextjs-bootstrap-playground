@@ -50,3 +50,15 @@ https://www.ibm.com/docs/en/pac/9.1.5?topic=ipac-importing-cacertpem-certificate
 
 https://www.digicert.com/kb/ssl-support/pem-ssl-creation.htm
 
+## Tailwind CSS
+
+Add the Tailwind directives to your CSS
+
+inside ./styles/globals.css
+
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
