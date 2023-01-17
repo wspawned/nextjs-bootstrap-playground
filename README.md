@@ -38,21 +38,10 @@ export default function MyApp({ Component, pageProps }) {
 
 https://nextjs.org/docs/basic-features/font-optimization
 
-## SSL Certificate
 
-```
-I made a file with the CA certificates that I get in my Plesk panel, then I added this line in Apache and now it's fixed.
+# Tailwind CSS
 
-SSLCertificateChainFile C:/Users/Administrator/Desktop/cert/ca-cert.crt
-```
-
-https://www.ibm.com/docs/en/pac/9.1.5?topic=ipac-importing-cacertpem-certificate-into-browser-when-https-is-enabled
-
-https://www.digicert.com/kb/ssl-support/pem-ssl-creation.htm
-
-## Tailwind CSS
-
-Add the Tailwind directives to your CSS
+## Add the Tailwind directives to your CSS
 
 inside ./styles/globals.css
 
@@ -62,3 +51,26 @@ inside ./styles/globals.css
 @tailwind utilities;
 ```
 
+# SSL Certificate
+
+Create file inside root folder named; 
+
+.env.local.example
+```
+NEXT_PUBLIC_TMDB_API_KEY=XXXXXXXXXXXXXX
+NEXT_PUBLIC_TMDB_API_READ_ACCESS_TOKEN=XOXOXOXOXOXOXXOX
+JWT_ACCESS_TOKEN=XOXOXOXO
+SSL_CERTIFICATE_PATH=/path/to/cert.pem
+SSL_CERTIFICATE_KEY_PATH=/path/to/key.pem
+```
+NEXT_PUBLIC_etc can be reached by browser, others only reachable with nodejs. So, it is needed to read key and pem inside getServerSideProps() by nodejs.
+
+Read from environment 
+
+```
+const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+```
+
+https://www.ibm.com/docs/en/pac/9.1.5?topic=ipac-importing-cacertpem-certificate-into-browser-when-https-is-enabled
+
+https://www.digicert.com/kb/ssl-support/pem-ssl-creation.htm
