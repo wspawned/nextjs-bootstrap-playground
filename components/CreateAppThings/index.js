@@ -1,12 +1,11 @@
-import styles from '../../styles/Home.module.css'
 import Image from 'next/image'
 
 const CreateAppThings = () => {
   return (
-    <div className={styles.description}>
+    <div>
     <p>
       Get started by editing&nbsp;
-      <code className={styles.code}>pages/index.js</code>
+      <code>pages/index.js</code>
     </p>
     <div>
       <a
@@ -15,7 +14,6 @@ const CreateAppThings = () => {
         <Image
           src="/vercel.svg"
           alt="Vercel Logo"
-          className={styles.vercelLogo}
           width={100}
           height={24}
           priority

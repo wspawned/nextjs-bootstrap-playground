@@ -51,6 +51,9 @@ inside ./styles/globals.css
 @tailwind utilities;
 ```
 
+https://blog.logrocket.com/debugging-tailwind-css-next-js/
+https://github.com/nrwl/nx/issues/8355
+
 # SSL Certificate
 
 Create file inside root folder named; 
@@ -65,8 +68,14 @@ SSL_CERTIFICATE_KEY_PATH=/path/to/key.pem
 ```
 NEXT_PUBLIC_etc can be reached by browser, others only reachable with nodejs. So, it is needed to read key and pem inside getServerSideProps() by nodejs.
 
-Read from environment 
+SSL files need to be read inside server.js It is also must be under root folder and fs can be used with nodejs.
+```
+const fs = require('fs');
+const CERT_KEY = process.env.SSL_CERTIFICATE_KEY_PATH;
+fs.readFile(CERT_KEY, 'utf8' );
+```
 
+server.js
 ```
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 ```
