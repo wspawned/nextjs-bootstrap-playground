@@ -54,6 +54,16 @@ inside ./styles/globals.css
 https://blog.logrocket.com/debugging-tailwind-css-next-js/
 https://github.com/nrwl/nx/issues/8355
 
+## Bg images
+
+https://tailwindcss.com/docs/background-origin
+
+https://tailwindcss.com/docs/background-size
+
+https://codepen.io/creativeresul/pen/ZEogdPR?editors=1010
+
+https://codepen.io/tag/image-gallery
+
 # SSL Certificate
 
 Create file inside root folder named; 

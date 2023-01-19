@@ -10,9 +10,9 @@ module.exports = {
         transparent: 'transparent',
         current: 'currentColor',
         'white': '#ffffff',
-        prime: "#f97316",
-        second: "#a855f7",
-        neuter: "#0f766e",
+        "primary-100": "#f97316",
+        "primary-200": "#a855f7",
+        "primary-300": "#0f766e",
       },
     },
 
