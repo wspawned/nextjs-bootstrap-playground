@@ -83,3 +83,30 @@ const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 https://www.ibm.com/docs/en/pac/9.1.5?topic=ipac-importing-cacertpem-certificate-into-browser-when-https-is-enabled
 
 https://www.digicert.com/kb/ssl-support/pem-ssl-creation.htm
+
+# Youtube Embedded Videos
+
+Youtube IFrame expects the host to be running on <b>https</b> domain.
+
+The IFrame would work just fine on localhost as localhost is considered as secure, but when hosted on public domain, it needs to be served through Https.
+
+I have used free Certificates from LetsEncrypt to get ssl for the domain, and things started working thereafter.
+
+-----
+
+Videos must be allowed to be embedded and had no copyright issue.
+
+---
+
+It seems that you need to access your page that contains the embedded youtube player through a host name and NOT an IP address.
+
+A Hacky word-around: I set a hostname for my VM in my hosts file and aliased my IP address to dev-vm.
+
+[How to edit your host file](https://docs.rackspace.com/support/how-to/modify-your-hosts-file/)
+
+Now i access the page which has my embedded player like this: `http://dev-vm:3000/video` and now videos that previously gave me a 'video unavailable' error are now playing.
+
+----
+
+
+
