@@ -6,6 +6,17 @@ Change the display value of elements when printing with our print display utilit
 
 # Next.js
 
+## Root id of Next
+
+Instead of #root id defined as #__next
+
+```
+document.getElementById("#__next");
+Modal.setAppElement("#__next");
+```
+
+https://www.youtube.com/watch?v=10FNqoPpNbE
+
 ## Fonts and Images
 
 Next supports custom fonts and images
@@ -114,9 +125,24 @@ A Hacky word-around: I set a hostname for my VM in my hosts file and aliased my 
 
 [How to edit your host file](https://docs.rackspace.com/support/how-to/modify-your-hosts-file/)
 
-Now i access the page which has my embedded player like this: `http://dev-vm:3000/video` and now videos that previously gave me a 'video unavailable' error are now playing.
+Now i access the page which has my embedded player like this  `http://dev-vm:3000/video` and now videos that previously gave me a 'video unavailable' error are now playing.
 
 ----
+
+## Folder Structure
+
+All of your types inside modules folder with this navigation
+
+```
+src/store/modules/app.types.ts
+```
+
+and your constants in utils folder with this navigation
+
+```
+src/utils/validation.constant.ts
+```
+
 
 
 
