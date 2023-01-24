@@ -143,6 +143,14 @@ and your constants in utils folder with this navigation
 src/utils/validation.constant.ts
 ```
 
+## NPM
+
+https://www.npmjs.com/package/react-modal
+
+https://www.npmjs.com/package/react-cookie-consent
+
+
+
 
 
 
