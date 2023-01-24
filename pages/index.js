@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import UtilityCards from '../components/UtilityCards'
 import CreateAppThings from '../components/CreateAppThings'
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -15,7 +16,9 @@ export default function Home() {
 
         <CreateAppThings/>
         <UtilityCards/>
+        <Link href="/form" >
         <button type="button" class="btn btn-secondary">Secondary</button>
+        </Link>
 
       </main>
     </>

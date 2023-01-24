@@ -10,6 +10,7 @@ const roboto = Roboto({
 })
 
 import { useEffect } from "react";
+import ConsentCookie from "../components/ConsentCookie/ConsentCookie";
 
 const App = ({ Component, pageProps }) => {
 
@@ -20,6 +21,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <main className={roboto.className}>
       <Component {...pageProps} />
+      <ConsentCookie/>
     </main>
   )
 }

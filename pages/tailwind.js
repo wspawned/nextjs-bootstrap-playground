@@ -10,7 +10,7 @@ const Tailwind = () => {
 
   return (
     <div className="flex flex-col items-center bg-primary-300 py-16 gap-12 ">
-      <h1 className="text-lg text-3xl font-bold text-primary-100">
+      <h1 className="text-lg text-3xl font-bold text-primary-100 underline underline-offset-8 decoration-black">
         Tailwind Things
       </h1>
 
