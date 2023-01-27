@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { CLOCKWORK_LYRICS, KVKK } from '../utils/validation.constant';
 
@@ -6,7 +7,28 @@ Modal.setAppElement("#__next");
 
 const Tailwind = () => {
 
+  const router = useRouter();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => {
+    setModalIsOpen(true);
+    document.body.style.overflow = "hidden";
+    router.push('/tailwind?kvkk=open', undefined, { shallow: true });
+  }
+  const closeModal = () => {
+    setModalIsOpen(false);
+    document.body.style.overflow = "unset";
+    router.push('/tailwind', undefined, { shallow: true });
+  }
+
+  useEffect(()=>{
+    if(router.asPath === "/tailwind?kvkk=open"){
+      openModal()
+    } else {
+    closeModal()  
+    }
+    console.log(router.asPath)
+  }, [router.asPath])
 
   return (
     <div className="flex flex-col items-center bg-primary-300 py-16 gap-12 ">
@@ -37,7 +59,7 @@ const Tailwind = () => {
           className="h-full w-1/6 bg-red-800 hover:cursor-pointer
         bg-[url('../public/images/qotsa.jpg')]  bg-cover"
           onClick={() => {
-            setModalIsOpen(true);
+            openModal();
           }}
         ></div>
 
@@ -52,10 +74,12 @@ const Tailwind = () => {
       <Modal
         isOpen={modalIsOpen}
         shouldCloseOnOverlayClick={true}
-        onRequestClose={() => setModalIsOpen(false)}
+        onRequestClose={() => closeModal()}
       >
-        <div className='flex flex-col w-full h-min-full bg-primary-300 justify-center text-center text-stone-300' >
-          <h1 className='text-lg text-3xl font-bold' >Q.O.T.S.A - ... LIKE CLOCKWORK lyrics</h1>
+        <div className="flex flex-col w-full h-min-full bg-primary-300 justify-center text-center text-stone-300">
+          <h1 className="text-lg text-3xl font-bold">
+            Q.O.T.S.A - ... LIKE CLOCKWORK lyrics
+          </h1>
           <p className="whitespace-pre-line text-sm text-left ">{KVKK}</p>
         </div>
       </Modal>
