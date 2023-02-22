@@ -1,13 +1,14 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { Cookies } from "react-cookie-consent";
 
 const LoginPage = () => {
   const router = useRouter();
   const [user, setUser] = useState("");
 
   const handleLogin = () => {
-    localStorage.setItem('userName', user);
-    localStorage.setItem("tokenTime", Date.now())
+    Cookies.set('userName', user);
+    Cookies.set("tokenTime", Date.now())
   };
 
   return (
