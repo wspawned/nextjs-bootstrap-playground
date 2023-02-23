@@ -3,12 +3,19 @@ import { useEffect, useState } from "react";
 import { Cookies } from "react-cookie-consent";
 
 const LoginPage = () => {
+  const mockJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTY3NzE4NjEzMiwiZXhwIjoxNjc3MTg5NzMyfQ.V0kCfDLNYenvDF8QI3xjr5W-BjwoMIXY9mCSZvgJ-e8"
+
   const router = useRouter();
   const [user, setUser] = useState("");
 
   const handleLogin = () => {
-    Cookies.set('userName', user);
-    Cookies.set("tokenTime", Date.now())
+    // Cookies.set('userName', user);
+    // Cookies.set("tokenTime", Date.now())
+
+    const parsedJWT = parseJwt(mockJWT);
+    const stringJasonJWT = JSON.stringify(parsedJWT);
+    // Cookies.set('user', parsedJWT);
+    console.log(parsedJWT)
   };
 
   return (
@@ -44,3 +51,13 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+export const parseJwt = (token) => {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
