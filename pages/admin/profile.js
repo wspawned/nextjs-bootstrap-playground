@@ -5,23 +5,23 @@ import { UserContext } from "../../src/context/userContext";
 
 const ProfilePage = () => {
   const router = useRouter();
-  const value = useContext(UserContext)
+  const {userName, changeUserName} = useContext(UserContext)
 
-  const user = Cookies.get('user')
-  console.log(user)
+  // const user = Cookies.get('user')
+  // console.log(user)
 
   return (
-    <UserContext.Consumer>
-      {(value) => {
-        return (
+    // <UserContext.Consumer>
+    //   {(value) => {
+    //     return (
           <div className="flex flex-col w-screen h-screen justify-center items-center ">
             <h1 className="text-3xl">Profile</h1>
             <p>{router.asPath}</p>
-            <p>{value}</p>
+            <p>{userName}</p>
           </div>
-        );
-      }}
-    </UserContext.Consumer>
+    //     );
+    //   }}
+    // </UserContext.Consumer>
   );
     
   

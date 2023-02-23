@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../styles/globals.css'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Roboto } from '@next/font/google'
 import ConsentCookie from "../components/ConsentCookie/ConsentCookie";
 import { useRouter } from "next/router";
@@ -18,10 +18,12 @@ const App = ({ Component, pageProps }) => {
   }, []);
 
   const router = useRouter();
+  const [userName, setUserName] = useState("wspawned");
+  const changeUserName = (username) => setUser(username);
 
   if(router.pathname.startsWith("/admin")) {
     return(
-      <UserContext.Provider value="Reed">
+      <UserContext.Provider value={{userName, changeUserName}}>
         <Component {...pageProps} />
       </UserContext.Provider>
     )
