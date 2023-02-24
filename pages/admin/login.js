@@ -1,8 +1,11 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Cookies } from "react-cookie-consent";
+import { UserContext } from "../../src/context/userContext";
 
 const LoginPage = () => {
+  const {changeUserName} = useContext(UserContext)
+
   const mockJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTY3NzE4NjEzMiwiZXhwIjoxNjc3MTg5NzMyfQ.V0kCfDLNYenvDF8QI3xjr5W-BjwoMIXY9mCSZvgJ-e8"
 
   const router = useRouter();
@@ -10,7 +13,8 @@ const LoginPage = () => {
 
   const handleLogin = () => {
     // Cookies.set('userName', user);
-    // Cookies.set("tokenTime", Date.now())
+    // Cookies.set("tokenTime", Date.now());
+    changeUserName(user);
 
     const parsedJWT = parseJwt(mockJWT);
     const stringJasonJWT = JSON.stringify(parsedJWT);
@@ -42,6 +46,7 @@ const LoginPage = () => {
         className="bg-teal-100 p-2"
         onClick={() => {
           handleLogin();
+          router.push("profile")
         }}
       >
         Login
