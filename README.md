@@ -150,6 +150,9 @@ https://www.npmjs.com/package/react-modal
 https://www.npmjs.com/package/react-cookie-consent
 
 
+## Prevent LoginPage flash
+
+https://joshuaclaudioenrico.medium.com/next-js-redirection-without-flashing-content-a3b6a5d83bf2
 
 
 
