@@ -18,8 +18,6 @@ const App = ({ Component, pageProps }) => {
   }, []);
 
   const router = useRouter();
-  const [userName, setUserName] = useState("wspawned");
-  const changeUserName = (username) => setUserName(username);
 
   if(router.pathname.startsWith("/admin")) {
     return(
