@@ -1,29 +1,16 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 
-export const UserContext = createContext(null);
+const UserContext = createContext(null);
 
-// export const UserProvider = ({ Component, pageProps }) => {
-//   return (
-//     <UserContext.Provider value="Reed">
-//       <Component {...pageProps} />
-//     </UserContext.Provider>
-//   );
-// }
+export const UserProvider = ({ children }) => {
+  const [userName, setUserName] = useState(null);
 
-// export default function App() {
-//   return (
-//     <UserContext.Provider value="Reed">
-//       <User />
-//     </UserContext.Provider>
-//   )
-// }
+  return (
+    <UserContext.Provider value={{userName, setUserName}}  >
+      {children}
+    </UserContext.Provider>
+  );
+}
 
-// function User() {
-//   return (
-//     <UserContext.Consumer>
-//       {value => <h1>{value}</h1>} 
-//       {/* prints: Reed */}
-//     </UserContext.Consumer>
-//   )
-// }
+export default UserContext;

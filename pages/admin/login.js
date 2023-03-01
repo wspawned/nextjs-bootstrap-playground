@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { Cookies } from "react-cookie-consent";
-import { UserContext } from "../../src/context/userContext";
+import UserContext from "../../src/context/userContext";
 
 const LoginPage = () => {
-  const {changeUserName} = useContext(UserContext)
+  const {setUserName} = useContext(UserContext)
 
   const mockJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTY3NzE4NjEzMiwiZXhwIjoxNjc3MTg5NzMyfQ.V0kCfDLNYenvDF8QI3xjr5W-BjwoMIXY9mCSZvgJ-e8"
 
@@ -14,7 +14,7 @@ const LoginPage = () => {
   const handleLogin = () => {
     // Cookies.set('userName', user);
     // Cookies.set("tokenTime", Date.now());
-    changeUserName(user);
+    setUserName(user);
 
     const parsedJWT = parseJwt(mockJWT);
     const stringJasonJWT = JSON.stringify(parsedJWT);

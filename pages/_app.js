@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Roboto } from '@next/font/google'
 import ConsentCookie from "../components/ConsentCookie/ConsentCookie";
 import { useRouter } from "next/router";
-import { UserContext } from "../src/context/userContext";
+import { UserContext, UserProvider } from "../src/context/userContext";
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -23,9 +23,9 @@ const App = ({ Component, pageProps }) => {
 
   if(router.pathname.startsWith("/admin")) {
     return(
-      <UserContext.Provider value={{userName, changeUserName}}>
+      <UserProvider>
         <Component {...pageProps} />
-      </UserContext.Provider>
+      </UserProvider>
     )
   }
 
