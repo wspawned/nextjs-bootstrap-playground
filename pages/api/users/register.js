@@ -8,9 +8,8 @@ const create = (user) => {
 }
 
 const _delete = async (id) => {
-  console.log(users);
-  const deletedUsers = users.filter((user) => user.id !== id )
-  fs.writeFileSync('data/users.json', JSON.stringify(deletedUsers, null, 4));
+  const NewUsers = users.filter((user) => user.id !== id )
+  fs.writeFileSync('data/users.json', JSON.stringify(NewUsers, null, 4));
 }
 
 const saveData = () => {
@@ -25,10 +24,9 @@ const handler = async(req, res) => {
     res.json({done: "json added"});
   } else if (req.method === 'DELETE') {
     console.log("deleteeeeeeeeeeeeee")
-    const id = req
-    console.log(id)
-  //   _delete(id);
-  //   res.json({done: "json deleted"});
+    const id = req.body.id;
+    _delete(id);
+    res.json({done: "json deleted"});
   }
 };
 
