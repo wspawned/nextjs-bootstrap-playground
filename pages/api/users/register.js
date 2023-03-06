@@ -4,29 +4,37 @@ let users = require('/data/users.json');
 
 const create = (user) => {
   users.push(user);
-  saveData();
+  saveData(users);
+}
+
+const update = (params) => {
+  const user = users.find((user) => user.id === params.id )
+  Object.assign(user, params);
+  saveData(users);
 }
 
 const _delete = async (id) => {
-  const NewUsers = users.filter((user) => user.id !== id )
-  fs.writeFileSync('data/users.json', JSON.stringify(NewUsers, null, 4));
+  const newUsers = users.filter((user) => user.id !== id )
+  saveData(newUsers);
 }
 
-const saveData = () => {
-  fs.writeFileSync('data/users.json', JSON.stringify(users, null, 4));
+const saveData = (data) => {
+  fs.writeFileSync('data/users.json', JSON.stringify(data, null, 4));
 }
 
 const handler = async(req, res) => {
   if (req.method === 'POST') {
     const user = req.body;
-    console.log(user)
     create(user);
     res.json({done: "json added"});
   } else if (req.method === 'DELETE') {
-    console.log("deleteeeeeeeeeeeeee")
     const id = req.body.id;
     _delete(id);
     res.json({done: "json deleted"});
+  } else if (req.method === 'PUT') {
+    const params = req.body;
+    update(params)
+    res.json({done: "json updated"});
   }
 };
 
