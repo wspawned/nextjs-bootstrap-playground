@@ -1,5 +1,5 @@
 import path from 'path';
-const fs = require('fs');
+const fs = require('fs/promises');
 const formidable = require('formidable');
 
 export const config = {
@@ -27,14 +27,19 @@ const uploadPdf = (req, saveLocally) => {
 
 
 const handler = async (req, res) => {
-  try {
-    fs.readdir(path.join(process.cwd(), "/public/pdf" ));
-  } catch (error) {
-    fs.mkdir(path.join(process.cwd(), "/public/pdf" ))
-  }
   if (req.method === 'POST') {
-    await uploadPdf(req, true);
-    res.json({done: "pdf added"});
+    try {
+      fs.readdir(path.join(process.cwd() +  "/public", "/pdf" ));
+    } catch (error) {
+      fs.mkdir(path.join(process.cwd() +  "/public", "/pdf" ));
+    }
+    let form = new formidable.IncomingForm()
+    form.on('field', function(name, value) {
+      console.log(name)
+    });
+    // await uploadPdf(req, true);
+
+    await res.json({done: "pdf added"});
   }
 };
 

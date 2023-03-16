@@ -9,9 +9,9 @@ const PdfUploadPage = () => {
     if(!pdf) return;
     const formData = new FormData();
     formData.append("myPdf",pdf);
-    // formData.append("myTitle",title);
+    formData.append("myTitle",title);
 
-    const {data} = await axios.post("/api/pdfs/uploadPdf", formData)
+    const {data} = await axios.post("/api/pdf/uploadPdf", formData)
     console.log(data)
   }
 
