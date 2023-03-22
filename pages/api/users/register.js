@@ -2,9 +2,17 @@ const fs = require('fs');
 
 let users = require('/data/users.json');
 
-const create = (user) => {
+const create = (req, res) => {
+  const {company, contact, country} = req.body;
+  if (!company.length || !contact.length || !country.length) {
+    res.status(400).json({ message: 'missing part in payload' });
+    return;
+  }
+  const userId= Date.now();
+  const user = {id: userId, company, contact, country}
   users.push(user);
   saveData(users);
+  res.status(201).json({ message: 'user created' });
 }
 
 const update = (params) => {
@@ -24,9 +32,7 @@ const saveData = (data) => {
 
 const handler = async(req, res) => {
   if (req.method === 'POST') {
-    const user = req.body;
-    create(user);
-    res.json({done: "json added"});
+    create(req, res);
   } else if (req.method === 'DELETE') {
     const id = req.body.id;
     _delete(id);
@@ -35,6 +41,8 @@ const handler = async(req, res) => {
     const params = req.body;
     update(params)
     res.json({done: "json updated"});
+  } else {
+    res.status(405).json({ message: 'Method not allowed' });
   }
 };
 

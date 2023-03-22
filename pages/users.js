@@ -11,13 +11,18 @@ const UsersPage = () => {
 
   const handleRegister = async () => {
     const createUserPayload = {
-      id: Date.now(),
       company,
       contact,
       country,
     }
-    const {data} = await axios.post("/api/users/register", createUserPayload);
-    console.log(data.done)
+    await axios.post("/api/users/register", createUserPayload)
+    .then((res) => {
+      const {data} = res;
+      console.log(data)
+    })
+    .catch((err) => {
+      console.log(err.response.data)
+    })
   };
 
   const handleUpdate = async () => {
