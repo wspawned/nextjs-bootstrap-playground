@@ -32,14 +32,14 @@ const UsersPage = () => {
   };
 
   const handleDelete = async (id) => {
-    const { data } = await axios({
+    const res = await axios({
       method: "delete",
       url: "/api/users/register",
       data: {
         id: id,
       },
     });
-    console.log(data.done)
+    console.log(res.data)
   }
 
   return (

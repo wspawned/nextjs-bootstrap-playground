@@ -19,11 +19,18 @@ const update = (params) => {
   const user = users.find((user) => user.id === params.id )
   Object.assign(user, params);
   saveData(users);
+  
 }
 
-const _delete = async (id) => {
+const _delete = async (req, res) => {
+  const {id} = req.body;
+  if (!id) {
+    res.status(400).json({ message: 'missing id in payload' });
+    return;
+  }
   const newUsers = users.filter((user) => user.id !== id )
-  saveData(newUsers);
+    saveData(newUsers);
+    res.status(200).json({ message: 'user deleted' }); 
 }
 
 const saveData = (data) => {
@@ -34,9 +41,7 @@ const handler = async(req, res) => {
   if (req.method === 'POST') {
     create(req, res);
   } else if (req.method === 'DELETE') {
-    const id = req.body.id;
-    _delete(id);
-    res.json({done: "json deleted"});
+    _delete(req, res);
   } else if (req.method === 'PUT') {
     const params = req.body;
     update(params)
