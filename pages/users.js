@@ -32,13 +32,13 @@ const UsersPage = () => {
   };
 
   const handleDelete = async (id) => {
-    const res = await axios({
-      method: "delete",
-      url: "/api/users/register",
-      data: {
-        id: id,
-      },
-    });
+    const res = await axios.delete("/api/users/register",
+      {
+        params: {
+          id: id,
+        }
+      }
+    );
     console.log(res.data)
   }
 

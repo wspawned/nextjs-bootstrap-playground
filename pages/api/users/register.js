@@ -12,7 +12,7 @@ const create = (req, res) => {
   const user = {id: userId, company, contact, country}
   users.push(user);
   saveData(users);
-  res.status(201).json({ message: 'user created' });
+  res.status(201).json({ message: 'user created successfully' });
 }
 
 const update = (params) => {
@@ -23,14 +23,14 @@ const update = (params) => {
 }
 
 const _delete = async (req, res) => {
-  const {id} = req.body;
+  const id = Number(req.query.id);
   if (!id) {
-    res.status(400).json({ message: 'missing id in payload' });
+    res.status(400).json({ message: 'missing id in query' });
     return;
   }
   const newUsers = users.filter((user) => user.id !== id )
-    saveData(newUsers);
-    res.status(200).json({ message: 'user deleted' }); 
+  saveData(newUsers);
+  res.status(200).json({ message: 'user deleted successfully' }); 
 }
 
 const saveData = (data) => {
