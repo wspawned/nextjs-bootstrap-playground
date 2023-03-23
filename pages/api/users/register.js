@@ -15,11 +15,17 @@ const create = (req, res) => {
   res.status(201).json({ message: 'user created successfully' });
 }
 
-const update = (params) => {
-  const user = users.find((user) => user.id === params.id )
-  Object.assign(user, params);
+const update = (req, res) => {
+  const updatedUser = req.body;
+  const {company, contact, country} = updatedUser;
+  if (!company.length || !contact.length || !country.length) {
+    res.status(400).json({ message: 'missing part in payload' });
+    return;
+  }
+  const user = users.find((user) => user.id === updatedUser.id )
+  Object.assign(user, updatedUser);
   saveData(users);
-  
+  res.status(200).json({ message: 'user updated successfully' });
 }
 
 const _delete = async (req, res) => {
@@ -43,9 +49,7 @@ const handler = async(req, res) => {
   } else if (req.method === 'DELETE') {
     _delete(req, res);
   } else if (req.method === 'PUT') {
-    const params = req.body;
-    update(params)
-    res.json({done: "json updated"});
+    update(req, res);
   } else {
     res.status(405).json({ message: 'Method not allowed' });
   }

@@ -27,19 +27,28 @@ const UsersPage = () => {
 
   const handleUpdate = async () => {
     const updateUserPayload = editItem;
-    const {data} = await axios.put("/api/users/register", updateUserPayload);
-    console.log(data.done)
+    await axios.put("/api/users/register", updateUserPayload)
+    .then((res) => {
+      const {data} = res;
+      console.log(data)
+    })
+    .catch((err) => {
+      console.log(err.response.data)
+    })
   };
 
   const handleDelete = async (id) => {
-    const res = await axios.delete("/api/users/register",
+    await axios.delete("/api/users/register",
       {
         params: {
           id: id,
         }
       }
-    );
-    console.log(res.data)
+    ).then((res) => {
+      console.log(res.data)
+    }).catch((err) => {
+      console.log(err.response.data)
+    })
   }
 
   return (
