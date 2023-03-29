@@ -154,6 +154,14 @@ https://www.npmjs.com/package/react-cookie-consent
 
 https://joshuaclaudioenrico.medium.com/next-js-redirection-without-flashing-content-a3b6a5d83bf2
 
+## Read PNG File and URL.createObjectURL(img)
+
+https://javascript.info/blob
+
+imgString.blob is not a function
+
+
+
 
 
 
